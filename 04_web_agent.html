@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Task Assistant Demo</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f7f7fb;
+        }
+
+        .card {
+            max-width: 720px;
+            margin: auto;
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 16px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            margin-top: 6px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 18px;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #2d6cdf;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #1f57b8;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 14px;
+            background: #eef5ff;
+            border-radius: 8px;
+        }
+
+        .result strong {
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h1>Task Assistant Demo Page</h1>
+
+        <p>
+            This page is only for local automation practice.
+        </p>
+
+        <!-- Name -->
+        <label for="name">
+            Name
+        </label>
+
+        <input
+            id="name"
+            type="text"
+            placeholder="Enter your name"
+        />
+
+
+        <!-- Task -->
+        <label for="task">
+            Task
+        </label>
+
+        <input
+            id="task"
+            type="text"
+            placeholder="Enter your task"
+        />
+
+
+        <!-- Priority -->
+        <label for="priority">
+            Priority
+        </label>
+
+        <select id="priority">
+
+            <option value="low">
+                Low
+            </option>
+
+            <option value="medium">
+                Medium
+            </option>
+
+            <option value="high">
+                High
+            </option>
+
+        </select>
+
+
+        <!-- Notes -->
+        <label for="notes">
+            Notes
+        </label>
+
+        <textarea
+            id="notes"
+            placeholder="Add additional notes..."
+        ></textarea>
+
+
+        <!-- Submit -->
+        <button id="submitBtn">
+            Create Task
+        </button>
+
+
+        <!-- Result -->
+        <div
+            id="result"
+            class="result"
+            style="display: none;"
+        >
+            <strong>Task Created</strong>
+
+            <div id="resultText"></div>
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const submitButton =
+            document.getElementById("submitBtn");
+
+        const result =
+            document.getElementById("result");
+
+        const resultText =
+            document.getElementById("resultText");
+
+
+        submitButton.addEventListener(
+            "click",
+            function () {
+
+                const name =
+                    document.getElementById("name").value;
+
+                const task =
+                    document.getElementById("task").value;
+
+                const priority =
+                    document.getElementById("priority").value;
+
+                const notes =
+                    document.getElementById("notes").value;
+
+
+                if (!name || !task) {
+
+                    alert(
+                        "Please enter both name and task."
+                    );
+
+                    return;
+                }
+
+
+                resultText.innerHTML = `
+                    <p><strong>Name:</strong> ${name}</p>
+                    <p><strong>Task:</strong> ${task}</p>
+                    <p><strong>Priority:</strong> ${priority}</p>
+                    <p><strong>Notes:</strong> ${notes || "None"}</p>
+                `;
+
+
+                result.style.display = "block";
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
+<!-- 
+Your project could look like:
+
+python_agent_demo_bundle/
+│
+├── 01_setup/
+│   └── 01_setup_check.py
+│
+├── 02_first_agent_rl.py
+│
+├── 03_reasoning_agent.ipynb
+│
+└── 04_web_agent/
+    ├── 04_web_agent.html
+    └── 04_web_agent.py
+    
+The two files have different purposes:
+
+04_web_agent.html
+
+This is the web page being automated.
+
+It contains:
+
+Name
+Task
+Priority
+Notes
+Create Task button
+Result
+04_web_agent.py
+
+This will be the Python web agent.
+
+It will use Selenium to open the HTML page and interact with it programmatically.
+
+For example, the eventual agent flow will be:
+
+Python Agent
+     │
+     ▼
+Selenium
+     │
+     ▼
+Open 04_web_agent.html
+     │
+     ├── Find Name input
+     ├── Find Task input
+     ├── Select Priority
+     ├── Enter Notes
+     └── Click Create Task
+              │
+              ▼
+         Web Page
+              │
+              ▼
+        Task Created
+
+So do not put this HTML code inside a .py file. It is the webpage that your Python/Selenium agent will control. -->
