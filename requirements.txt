@@ -1,0 +1,8 @@
+google-genai
+langchain
+langchain-google-genai
+python-dotenv
+gymnasium
+numpy
+selenium
+pyautogui
