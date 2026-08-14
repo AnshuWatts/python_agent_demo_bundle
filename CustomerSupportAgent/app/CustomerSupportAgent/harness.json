@@ -1,5 +1,5 @@
 {
-  "name": "CustomerSupportAgent",
+  "name": "Support",
   "model": {
     "provider": "bedrock",
     "modelId": "global.anthropic.claude-sonnet-4-6"
