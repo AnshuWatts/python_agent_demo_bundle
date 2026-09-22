@@ -19,8 +19,8 @@
   "abTests": [],
   "harnesses": [
     {
-      "name": "CustSupport,
-      "path": "app/CustSupport"
+      "name": "CustomerSupportAgent",
+      "path": "app/CustomerSupportAgent"
     }
   ],
   "datasets": [],
